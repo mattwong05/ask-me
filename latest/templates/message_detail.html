@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <!-- 留言详情 -->
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">留言详情</h5>
+                <p class="card-text message-content">{{ message.content }}</p>
+                <p class="card-text">
+                    <small class="text-muted">
+                        — {{ message.name or '匿名' }} 于 {{ message.timestamp.strftime('%Y-%m-%d %H:%M') }}
+                    </small>
+                </p>
+            </div>
+        </div>
+
+        <!-- 回复列表 -->
+        <h5>回复列表</h5>
+        {% if replies %}
+            {% for reply in replies %}
+            <div class="card mb-2">
+                <div class="card-body">
+                    <p class="card-text reply-content">{{ reply.content }}</p>
+                    <p class="card-text">
+                        <small class="text-muted">于 {{ reply.timestamp.strftime('%Y-%m-%d %H:%M') }}</small>
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p>暂无回复。</p>
+        {% endif %}
+
+        <!-- 回复表单 -->
+        <h5 class="mt-4">添加回复</h5>
+        <form method="post">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.content.label(class="form-label") }}
+                {{ form.content(class="form-control", rows="3", placeholder="请输入回复内容") }}
+            </div>
+            {{ form.submit(class="btn btn-primary") }}
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>一涵的提问箱</title>
+    <!-- 引入 Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.1/css/bootstrap.min.css">
+    <!-- 自定义 CSS 样式 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{{ url_for('index') }}">一涵的提问箱</a>
+    </nav>
+
+    <!-- 页面内容 -->
+    <div class="container">
+        <!-- 闪现消息 -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="关闭">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <!-- 内容块 -->
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer">
+        <p>&copy; 2024 一涵的提问箱</p>
+        <p>created with ❤️ by Matt Wong</p>
+    </div>
+
+    <!-- 引入 jQuery 和 Bootstrap JS -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
