@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Incrementing Number</title>
+</head>
+
+<body>
+  <div><span id="age">0</span> 秒 </div>
+  <button id="time_rewind">回溯 10 秒</button>
+
+  <script>
+    let count = 0;
+    const numberElement = document.getElementById("age");
+    const button = document.getElementById("time_rewind");
+
+    // 每秒自动递增
+    setInterval(() => {
+      count++;
+      numberElement.textContent = count;
+    }, 1000);
+
+    // 点击按钮递增
+    button.addEventListener("click", () => {
+      count -= 10;
+      if (count < 0) {
+        count = 0;
+      }
+      numberElement.textContent = count;
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>创建用户</title>
+</head>
+
+<body>
+  <h1>创建或更新用户</h1>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <ul>
+    {% for category, message in messages %}
+    <li style="color: {{ 'red' if category == 'error' else 'green' }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+  <form method="POST">
+    用户名：<input type="text" name="user"><br>
+    欢迎消息：<input type="text" name="welcome"><br>
+    <button type="submit">提交</button>
+  </form>
+  <h2>现有用户</h2>
+  <ul>
+    {% for user, welcome in user_dict.items() %}
+    <li><a href="{{ url_for('user_detail', user_name=user) }}">{{ user }}: {{ welcome }}</a></li>
+    {% endfor %}
+  </ul>
+</body>
+
+</html>

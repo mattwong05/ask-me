@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>idle</title>
+
+</head>
+
+<body>
+  <div>
+    <span id="time">
+      0
+    </span>秒
+  </div>
+  <button id="nb">
+    回溯十秒
+  </button>
+
+  <script>
+    let time = 0;
+    const timeElement = document.getElementById('time');
+    const nbElement = document.getElementById('nb');
+    setInterval(() => {
+      time++;
+      timeElement.textContent = time;
+      console.log(time);
+    }, 1000);
+  </script>
+
+</body>
+
+</html>
